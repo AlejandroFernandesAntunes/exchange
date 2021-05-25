@@ -36,10 +36,10 @@ describe "Exchange::ExternalAPI::OpenExchangeRates" do
       mock_api("https://openexchangerates.org/api/latest.json?app_id=", fixture('api_responses/example_json_api.json'))
     end
     it "should convert right" do
-      expect(subject.convert(78, :eur, :usd).round(2)).to eq(BigDecimal.new("103.12"))
+      expect(subject.convert(78, :eur, :usd).round(2)).to eq(BigDecimal("103.12"))
     end
     it "should convert negative numbers right" do
-      expect(subject.convert(-70, :chf, :usd).round(2)).to eq(BigDecimal.new("-76.71"))
+      expect(subject.convert(-70, :chf, :usd).round(2)).to eq(BigDecimal("-76.71"))
     end
     it "should convert when given symbols" do
       expect(subject.convert(70, :sek, :usd).round(2)).to eq(10.38)
@@ -49,11 +49,11 @@ describe "Exchange::ExternalAPI::OpenExchangeRates" do
     subject { Exchange::ExternalAPI::OpenExchangeRates.new }
     it "should convert and be able to use history" do
       mock_api("https://openexchangerates.org/api/historical/2011-09-09.json?app_id=", fixture('api_responses/example_json_api.json'))
-      expect(subject.convert(72, :eur, :usd, :at => Time.gm(2011,9,9)).round(2)).to eq(BigDecimal.new("95.19"))
+      expect(subject.convert(72, :eur, :usd, :at => Time.gm(2011,9,9)).round(2)).to eq(BigDecimal("95.19"))
     end
     it "should convert negative numbers right" do
       mock_api("https://openexchangerates.org/api/historical/2011-09-09.json?app_id=", fixture('api_responses/example_json_api.json'))
-      expect(subject.convert(-70, :chf, :usd, :at => Time.gm(2011,9,9)).round(2)).to eq(BigDecimal.new("-76.71"))
+      expect(subject.convert(-70, :chf, :usd, :at => Time.gm(2011,9,9)).round(2)).to eq(BigDecimal("-76.71"))
     end
     it "should convert when given symbols" do
       mock_api("https://openexchangerates.org/api/historical/2011-09-09.json?app_id=", fixture('api_responses/example_json_api.json'))

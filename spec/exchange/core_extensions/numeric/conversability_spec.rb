@@ -74,32 +74,32 @@ describe "Exchange::Conversability" do
   end
   context "with a big decimal" do
     it "should allow to convert to a currency" do
-      expect(BigDecimal.new("3.25").in(:eur)).to be_kind_of Exchange::Money
-      expect(BigDecimal.new("3.25").in(:eur).value.round(2)).to eq(3.25)
+      expect(BigDecimal("3.25").in(:eur)).to be_kind_of Exchange::Money
+      expect(BigDecimal("3.25").in(:eur).value.round(2)).to eq(3.25)
     end
     it "should allow to convert to a curreny with a negative number" do
-      expect(BigDecimal.new("-3.25").in(:eur)).to be_kind_of Exchange::Money
-      expect(BigDecimal.new("-3.25").in(:eur).value.round(2)).to eq(-3.25)
+      expect(BigDecimal("-3.25").in(:eur)).to be_kind_of Exchange::Money
+      expect(BigDecimal("-3.25").in(:eur).value.round(2)).to eq(-3.25)
     end
     it "should allow to do full conversions" do
       mock_api("http://api.finance.xaviermedia.com/api/2012/08/27.xml", fixture('api_responses/example_xml_api.xml'), 3)
-      expect(BigDecimal.new("3.25").in(:eur).to(:chf)).to be_kind_of Exchange::Money
-      expect(BigDecimal.new("3.25").in(:eur).to(:chf).value.round(2)).to eq(3.99)
-      expect(BigDecimal.new("3.25").in(:eur).to(:chf).currency).to eq(:chf)
+      expect(BigDecimal("3.25").in(:eur).to(:chf)).to be_kind_of Exchange::Money
+      expect(BigDecimal("3.25").in(:eur).to(:chf).value.round(2)).to eq(3.99)
+      expect(BigDecimal("3.25").in(:eur).to(:chf).currency).to eq(:chf)
     end
     it "should allow to do full conversions with negative numbers" do
       mock_api("http://api.finance.xaviermedia.com/api/2012/08/27.xml", fixture('api_responses/example_xml_api.xml'), 3)
-      expect(BigDecimal.new("-3.25").in(:eur).to(:chf)).to be_kind_of Exchange::Money
-      expect(BigDecimal.new("-3.25").in(:eur).to(:chf).value.round(2)).to eq(-3.99)
-      expect(BigDecimal.new("-3.25").in(:eur).to(:chf).currency).to eq(:chf)
+      expect(BigDecimal("-3.25").in(:eur).to(:chf)).to be_kind_of Exchange::Money
+      expect(BigDecimal("-3.25").in(:eur).to(:chf).value.round(2)).to eq(-3.99)
+      expect(BigDecimal("-3.25").in(:eur).to(:chf).currency).to eq(:chf)
     end
     it "should allow to define a historic time in which the currency should be interpreted" do
-      expect(BigDecimal.new("3.25").in(:chf, :at => Time.gm(2010,1,1)).time.yday).to eq(1)
-      expect(BigDecimal.new("3.25").in(:chf, :at => Time.gm(2010,1,1)).time.year).to eq(2010)
-      expect(BigDecimal.new("3.25").in(:chf, :at => '2010-01-01').time.year).to eq(2010)
+      expect(BigDecimal("3.25").in(:chf, :at => Time.gm(2010,1,1)).time.yday).to eq(1)
+      expect(BigDecimal("3.25").in(:chf, :at => Time.gm(2010,1,1)).time.year).to eq(2010)
+      expect(BigDecimal("3.25").in(:chf, :at => '2010-01-01').time.year).to eq(2010)
     end
     it "should raise a no currency error if the currency does not exist" do
-      expect { BigDecimal.new("3.25").in(:zzz) }.to raise_error(Exchange::NoCurrencyError, "zzz is not a currency nor a country code matchable to a currency")
+      expect { BigDecimal("3.25").in(:zzz) }.to raise_error(Exchange::NoCurrencyError, "zzz is not a currency nor a country code matchable to a currency")
     end
   end
 end

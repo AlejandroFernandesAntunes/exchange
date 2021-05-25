@@ -39,7 +39,7 @@ describe "Exchange::ExternalAPI::Ecb" do
       expect(subject.convert(80, :eur, :usd).round(2)).to eq(105.28)
     end
     it "should convert negative numbers right" do
-      expect(subject.convert(-70, :chf, :usd).round(2)).to eq(BigDecimal.new("-76.45"))
+      expect(subject.convert(-70, :chf, :usd).round(2)).to eq(BigDecimal("-76.45"))
     end
     it "should convert when given symbols" do
       expect(subject.convert(70, :sek, :usd).round(2)).to eq(10.41)
@@ -54,7 +54,7 @@ describe "Exchange::ExternalAPI::Ecb" do
       expect(subject.convert(70, :eur, :usd, :at => Time.gm(2011,9,9)).round(2)).to eq(91.66)
     end
     it "should convert negative numbers right" do
-      expect(subject.convert(-70, :chf, :usd, :at => Time.gm(2011,9,9)).round(2)).to eq(BigDecimal.new("-76.08"))
+      expect(subject.convert(-70, :chf, :usd, :at => Time.gm(2011,9,9)).round(2)).to eq(BigDecimal("-76.08"))
     end
     it "should convert when given symbols" do
       expect(subject.convert(70, :sek, :usd, :at => Time.gm(2011,9,9)).round(2)).to eq(10.35)

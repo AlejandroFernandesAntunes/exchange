@@ -35,7 +35,7 @@ describe "Exchange::ExternalAPI::XavierMedia" do
       expect(subject.convert(80, :eur, :usd).round(2)).to eq(107.94)
     end
     it "should convert negative numbers right" do
-      expect(subject.convert(-70, :chf, :usd).round(2)).to eq(BigDecimal.new("-77.01"))
+      expect(subject.convert(-70, :chf, :usd).round(2)).to eq(BigDecimal("-77.01"))
     end
     it "should convert when given symbols" do
       expect(subject.convert(70, :sek, :usd).round(2)).to eq(10.35)
@@ -49,7 +49,7 @@ describe "Exchange::ExternalAPI::XavierMedia" do
     end
     it "should convert negative numbers right" do
       mock_api("http://api.finance.xaviermedia.com/api/2011/09/09.xml", fixture('api_responses/example_xml_api.xml'))
-      expect(subject.convert(-70, :chf, :usd, :at => Time.gm(2011,9,9)).round(2)).to eq(BigDecimal.new("-77.01"))
+      expect(subject.convert(-70, :chf, :usd, :at => Time.gm(2011,9,9)).round(2)).to eq(BigDecimal("-77.01"))
     end
     it "should convert when given symbols" do
       mock_api("http://api.finance.xaviermedia.com/api/2011/09/09.xml", fixture('api_responses/example_xml_api.xml'))
